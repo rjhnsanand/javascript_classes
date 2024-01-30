@@ -23,6 +23,10 @@ userPassword = "Fortune123"
 userCity = "Bangalore"
 
 console.table([userId, userName, userPassword, userCity]);
+console.log([userId, userName, userPassword, userCity]);
+
+// multiple variables can be dispalyed using both table and log commands
+// variables need to pass through []
 
 
 
