@@ -67,3 +67,5 @@ console.log(val1);
 const price = 1000
 
 price <= 800 ? console.log("less than 800") : console.log("more than 800");
+
+// this will be seen in React and JS frameworks.
