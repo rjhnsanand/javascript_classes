@@ -82,3 +82,8 @@ const books = [
 ]
 
 
+// Log only those books which are from the genre of "Fantasy".
+// Log only those books which are printed after 1900 and are in the genre of "Adventure".
+// Log only those books which have more than 300 pages, are printed after 1900 and in the genre of "Dystopian Fiction"
+
+
