@@ -1,104 +1,81 @@
-let randomNumber =   parseInt(Math.random()*100+1);
+let randomNumber = parseInt(Math.random()*100 + 1)
+//console.log(randomNumber);
 
-const submit =   document.querySelector('#subt')
-const userInput = document.querySelector('#guessField')
-const guessSlot = document.querySelector('guesses')
-const remaining = document.querySelector('.lastResult')
-const lowOrHi = document.querySelector('.lowOrHi')
-
-const startOver = document.querySelector('.resultParas')
-
-const p = document.createElement('p')
-
-let prevGuess = []
-
-let numGuess = 1
-
-let playGame = true
-
-if (playGame) {
-    submit.addEventListener( 'click', function(event){
-        event.preventDefault()
-        const guess = parseInt(userInput.value)
-
-        ValidateGuess(guess)
-    } )
-}
+// captured submit button
+let button = document.querySelector("#subt")
+let userInput = document.querySelector("#guessField")
+let guessCollection = document.querySelector(".guesses")
+let remainingAttempt = document.querySelector(".lastResult")
+let banner = document.querySelector(".lowOrHi")
 
 
+    let  previousGuesses = []  // initialize previous guesses here
+    const p =  document.createElement("p")
 
-function ValidateGuess(guess){
-    if (isNaN(guess)) {
-        alert('Please enter a valid number')
-    }else if (guess < 1){
-        alert('Please enter valid number')
-    }else if (guess > 100){
-        alert('Please enter valid number')
-    }else {
-        prevGuess.push(guess)
+    //create a start new game button
+    let newGameBtn = document.createElement("button")
+    
+        
 
-        if(numGuess === 11){
-            displayGuess(guess)
-            displayMessage(`Game over, Random number was ${randomNumber}`)
-            endGame()
-        }else{
-            displayGuess(guess)
-            CheckGuess(guess)
-        }
-    }
-}
-
-function CheckGuess(guess){
-
-if (guess === randomNumber) {
-    displayMessage("You guessed the right number, You Won")
-    endGame()
-}else if ( guess < randomNumber ){
-    displayMessage('Number is low')
-}else if ( guess > randomNumber ){
-    displayMessage('Nmber is high')
-}
-
-}
-
-
-function displayMessage(message){
-    lowOrHi.innerHTML = `${message}`
-}
-
-function displayGuess(){
+button.addEventListener( 'click', function(event){
+    event.preventDefault()
+   console.log(randomNumber);
+    const guess = parseInt(userInput.value)
+    //console.log(`This is user input ${guess}`);
     userInput.value = ""
-    guessSlot.innerHTML += `${guess}`
-    numGuess++
-    remaining.innerHTML = `${11-numGuess}`
+
+    ValidResponse(guess)
+} )
+
+
+// Funtion to validate the response
+function ValidResponse(guess){
+
+    if (guess < 1 || guess > 100 || isNaN(guess)) {
+        alert("please enter valid number")
+    } else {
+        // when user enters valid responses update all counters 
+       // console.log(`This is a valid response ${guess}`);  
+        previousGuesses.push(guess)
+        console.log(previousGuesses);
+        guessCollection.innerHTML = `${previousGuesses}`
+        remainingAttempt.innerHTML = `${10 - previousGuesses.length}`
+        MatchResponse(guess)  
+        
+    }
+
 }
 
-function newGame(){
+// Function to match User response with Random Number
+function MatchResponse(guess){
+    // console.log(`Got value form ValidResponse ${guess}`); Checking if we are getting value from ValidResponse
 
-    const newGameBtn = document.querySelector("#newGame")
-    newGameBtn.addEventListener( 'click' , function(event){
+    if(guess === randomNumber){
+        // If user guessed the right number then what should happen: Game should end, Option to start new game, Input field should be cleared
+        console.log(`Yay!! you guessed the right number. The number was ${guess}`);
+        endGame()
 
-        randomNumber = parseInt(Math.random()*100+1);
-        prevGuess = []
-        numGuess = 1
-        guessSlot.innerHTML = ''
-        remaining.innerHTML = `{11 - numGuess}`
-        userInput.removeAttribute('disabled')
-        startOver.removeChild(p)
-
-        playGame = true
-
-    } )
+    }
+    
 
 }
 
+
+// Function to end the Game
 function endGame(){
-        userInput.value = ""
-        userInput.setAttribute('disabled', '')
-        p.classList.add('button')
-        p.innerHTML = `<h2 id = "newGame"> Start new Game </h2>`
-        startOver.appendChild(p)
+ userInput.setAttribute('disabled', "")
+ userInput.value = ""
+ button.remove()
+ p.innerHTML = `Yay!! you guessed the right number`
+ p.style.backgroundColor = 'Green'
+ newGameBtn.classList = "guessSubmit"
+ newGameBtn.innerHTML = "New Game"
+ 
+ banner.append(p , newGameBtn)
 
-        playGame = false
-        newGame()
+
+
 }
+
+
+
