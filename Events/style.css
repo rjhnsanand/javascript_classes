@@ -1,0 +1,15 @@
+.heading{
+    display: flex;
+    justify-content: center;
+}
+
+
+.list{
+    display: flex;
+    flex-wrap: wrap
+    
+}
+
+.grid-item{
+    padding: 20px;
+}
