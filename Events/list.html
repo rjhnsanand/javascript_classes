@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Event lesson</title>
 </head>
 <body style="background-color: #212121;">
 
@@ -22,8 +22,39 @@
         <li><img width="300px"  class="grid-item" id="mountain" src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Image 6"></li>
     </ul>
 
+    <a class="link" href="https://www.google.com/"> <img src="https://lh3.googleusercontent.com/d_S5gxu_S1P6NR1gXeMthZeBzkrQMHdI5uvXrpn3nfJuXpCjlqhLQKH_hbOxTHxFhp5WugVOEcl4WDrv9rmKBDOMExhKU5KmmLFQVg" style="width: 200px;height: 96px;" alt="">  </a>
+
 </div>
    
     
 </body>
+
+<script>
+
+// document.querySelector(".list").addEventListener( 'click', function(e){
+//     console.log('list clicked');
+// } )
+
+document.querySelector("#sea").addEventListener( 'click', function(e){
+    e.stopPropagation()
+    console.log("Sea clicked");
+} )
+
+document.querySelector(".link").addEventListener( 'click', function(e){
+    e.preventDefault()
+    console.log("Google link Clicked");
+} )
+
+    document.querySelector(".list").addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            const removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+        // const removeIt = e.target.parentNode
+        //  removeIt.remove()
+        
+    })
+
+</script>
 </html>

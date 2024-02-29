@@ -13,3 +13,10 @@
 .grid-item{
     padding: 20px;
 }
+
+.link{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
